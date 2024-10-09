@@ -11,7 +11,7 @@ Este proyecto implementa una API en JavaScript que consume la API pública de Op
 ## Instalación
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/Immune-Andres/API-JS-App
+   git clone https://github.com/Immune-Andres/API-JS-App.git
 2. Instalar dependencias:
    ```bash
    npm install
