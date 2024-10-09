@@ -3,8 +3,9 @@ const axios = require('axios');
 
 const app = express();
 const port = 3000;
-const apiKey = 'your_openweather_api_key';  // Vulnerabilidad: Exposición de claves
+const apiKey = 'your_openweather_api_key'; // No debe estar hardcoded
 
+// Vulnerabilidad de falta de validación
 app.get('/weather', async (req, res) => {
     const city = req.query.city;
     if (!city) {
