@@ -14,7 +14,7 @@ Este proyecto implementa una API en JavaScript que consume la API pública de Op
    git clone https://github.com/tu-usuario/vulnerable-js-api.git
 2. Instalar dependencias:
    ```bash
-   pip install -r requirements.txt
+   npm install
 3. Ejecutar el proyecto:
    ```bash
-   python calculator.py
+   node index.js
