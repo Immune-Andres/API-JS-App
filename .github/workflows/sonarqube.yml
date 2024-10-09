@@ -1,0 +1,29 @@
+name: SonarQube Analysis for JavaScript
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sonarQubeAnalysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run SonarQube scanner
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=API-JS-App \
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
