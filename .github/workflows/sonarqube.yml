@@ -20,7 +20,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'  # Especifica la distribución de Java
-
+          
+      - name: Verify Java version
+        run: java -version
+        
       # Paso para instalar el escáner de SonarQube
       - name: Install SonarQube Scanner
         run: |
