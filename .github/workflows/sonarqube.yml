@@ -1,5 +1,3 @@
-name: SonarQube Scan - JavaScript
-
 on:
   push:
     branches:
@@ -23,29 +21,15 @@ jobs:
           
       - name: Verify Java version
         run: java -version
-        
-      # Paso para instalar el escáner de SonarQube
-      - name: Install SonarQube Scanner
-        run: |
-          # Descargar la última versión del escáner de SonarQube
-          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.2.1.4610-linux-x64.zip
-          # Descomprimir el archivo
-          unzip sonar-scanner.zip
-          # Mover el escáner
-          mv sonar-scanner-cli-6.2.1.4610-linux-x64 sonar-scanner
-          # Agregar al PATH
-          echo "${PWD}/sonar-scanner/bin" >> $GITHUB_PATH
-
+    
       # Paso para instalar dependencias de Node.js
       - name: Install Node.js dependencies
         run: |
           npm install
-
+          
       # Paso para ejecutar el análisis de SonarQube
       - name: Run SonarQube analysis
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=API-JS-App \
-            -Dsonar.sources=. \
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        uses: sonarsource/sonarqube-scan-action@<action version> # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+        env:
+            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} \
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
