@@ -1,24 +1,23 @@
 const express = require('express');
-const axios = require('axios');
-
+const fetch = require('node-fetch');
 const app = express();
-const port = 3000;
-const apiKey = 'your_openweather_api_key'; // No debe estar hardcoded
 
-// Vulnerabilidad de falta de validación
-app.get('/weather', async (req, res) => {
-    const city = req.query.city;
-    if (!city) {
-        return res.status(400).send("City is required");
-    }
-    try {
-        const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).send("Error fetching weather data");
-    }
+app.use(express.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+    res.send(`
+        <form action="/fetch" method="POST">
+            API endpoint: <input name="url">
+            <input type="submit">
+        </form>
+    `);
 });
 
-app.listen(port, () => {
-    console.log(`API running at http://localhost:${port}`);
+app.post('/fetch', async (req, res) => {
+    const apiUrl = req.body.url;
+    const response = await fetch(apiUrl);  // Vulnerable a SSRF
+    const data = await response.text();
+    res.send(data);  // Vulnerable a XSS
 });
+
+app.listen(3000, () => console.log('Server running on port 3000'));
