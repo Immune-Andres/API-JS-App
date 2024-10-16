@@ -24,7 +24,7 @@ jobs:
       # Paso para instalar el escáner de SonarQube
       - name: Install SonarQube Scanner
         run: |
-          # Descargar el escáner de SonarQube
+          # Descargar la última versión del escáner de SonarQube
           curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
           # Descomprimir el archivo
           unzip sonar-scanner.zip
