@@ -13,13 +13,13 @@ jobs:
       # Paso para clonar el repositorio
       - name: Checkout code
         uses: actions/checkout@v2
-        
-      # Paso para instalar Java (versión 17)
+
+      # Paso para instalar Java (versión 17) con la distribución Temurin
       - name: Install Java 17
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: 'temurin'  # Especifica la distribución de Java
 
       # Paso para instalar el escáner de SonarQube
       - name: Install SonarQube Scanner
