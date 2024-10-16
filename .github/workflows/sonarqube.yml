@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'temurin'  # Especifica la distribución de Java
+          distribution: 'temurin'
           
       - name: Verify Java version
         run: java -version
