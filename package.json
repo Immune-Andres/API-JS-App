@@ -1,0 +1,13 @@
+{
+  "name": "API-JS-App",
+  "version": "1.0.0",
+  "description": "Vulnerable JavaScript API project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "some-other-lib": "^1.0.0"
+  }
+}
