@@ -1,4 +1,4 @@
-# API-JS-App
+# API JS App
 
 Este proyecto implementa una API en JavaScript que consume la API pública de OpenWeather y contiene vulnerabilidades intencionales para su análisis con SonarQube.
 
