@@ -8,6 +8,5 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "some-other-lib": "^1.0.0"
   }
 }
