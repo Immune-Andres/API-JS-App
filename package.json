@@ -1,12 +1,13 @@
 {
-  "name": "api-js-app",
+  "name": "vulnerable-js-app",
   "version": "1.0.0",
-  "description": "Vulnerable JavaScript API project",
-  "main": "index.js",
+  "description": "Aplicación JavaScript vulnerable para pruebas de seguridad estática.",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "axios": "^0.21.1"
   }
 }
