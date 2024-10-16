@@ -1,4 +1,4 @@
-name: SonarQube Analysis for JavaScript
+name: SonarQube Scan - JavaScript
 
 on:
   push:
@@ -10,20 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Paso para clonar el repositorio
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+      # Paso para instalar el escáner de SonarQube
+      - name: Install SonarQube Scanner
+        run: |
+          # Descargar el escáner de SonarQube
+          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
+          # Descomprimir el archivo
+          unzip sonar-scanner.zip
+          # Mover el escáner
+          mv sonar-scanner-4.8.0.2856-linux sonar-scanner
+          # Agregar al PATH
+          echo "${PWD}/sonar-scanner/bin" >> $GITHUB_PATH
 
-      - name: Install dependencies
-        run: npm install
+      # Paso para instalar dependencias de Node.js
+      - name: Install Node.js dependencies
+        run: |
+          npm install
 
-      - name: Run SonarQube scanner
+      # Paso para ejecutar el análisis de SonarQube
+      - name: Run SonarQube analysis
         run: |
           sonar-scanner \
             -Dsonar.projectKey=API-JS-App \
+            -Dsonar.sources=. \
             -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
